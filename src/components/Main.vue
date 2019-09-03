@@ -3,12 +3,18 @@
     <thead>
       <tr>
         <th v-for="menu in ths" v-bind:key="menu.id">
-          <button v-on:click="s_id(menu)" type="button" class="aaa">{{ menu.value }}</button>
+          <button v-on:click="s_id(menu)" type="button" class="aaa">
+            {{ menu.value }}
+          </button>
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in computedTodos" v-bind:key="item.id" v-bind:class="{done:item.state}">
+      <tr
+        v-for="item in computedTodos"
+        v-bind:key="item.id"
+        v-bind:class="{ done: item.state }"
+      >
         <th>{{ item.id }}</th>
         <td>{{ item.comment }}</td>
         <td class="state">
