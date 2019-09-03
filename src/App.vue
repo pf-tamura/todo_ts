@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header v-on:scurrent="current=$event" :counter="todos.length"></Header>
+    <Header v-on:scurrent="current = $event" :counter="todos.length"></Header>
     <Main
       class="main"
       :computedTodos="computedTodos"
@@ -8,8 +8,8 @@
       v-on:s_id="titleSort($event)"
       v-on:s_remove="doRemove($event)"
     ></Main>
-    <Sort v-on:s_select="select=$event" :select="select"></Sort>
-    <Form v-on:notify="todos=$event"></Form>
+    <Sort v-on:s_select="select = $event" :select="select"></Sort>
+    <Form v-on:notify="todos = $event"></Form>
   </div>
 </template>
 
@@ -52,13 +52,9 @@ export default class App extends Vue {
         case 3:
           return a.datef < b.datef ? 1 : -1;
         case 4:
-          var aComment = a.comment;
-          var bComment = b.comment;
-          return aComment < bComment ? -1 : 1;
+          return a.Comment < b.Comment ? -1 : 1;
         case 5:
-          var aComment = a.comment;
-          var bComment = b.comment;
-          return aComment < bComment ? 1 : -1;
+          return a.Comment < b.Comment ? 1 : -1;
       }
     });
 
@@ -70,7 +66,7 @@ export default class App extends Vue {
     item.state = !item.state ? 1 : 0;
     if (item.state === 1) {
       item.datef = new Date().getTime();
-    }else{
+    } else {
       item.datef = -1;
     }
   }
@@ -114,4 +110,3 @@ export default class App extends Vue {
   margin-left: 500px;
 }
 </style>
-
