@@ -1,20 +1,103 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <Header v-on:scurrent="current=$event" :counter="todos.length"></Header>
+    <Main
+      class="main"
+      :computedTodos="computedTodos"
+      v-on:s_state="doChangeState($event)"
+      v-on:s_id="titleSort($event)"
+      v-on:s_remove="doRemove($event)"
+    ></Main>
+    <Sort v-on:s_select="select=$event" :select="select"></Sort>
+    <Form v-on:notify="todos=$event"></Form>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/Header.vue";
+import Form from "./components/Form.vue";
+import Main from "./components/Main.vue";
+import Sort from "./components/Sort.vue";
 
 @Component({
   components: {
-    HelloWorld
+    Header,
+    Form,
+    Main,
+    Sort
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  count: number = 10;
+  todos: any[] = [];
+  current: number = -1;
+  select: number = 0;
+  // state: any = {};
+
+  get computedTodos(): any[] {
+    const self = this;
+    const list: any[] = this.todos.filter(function(el: any) {
+      return self.current < 0 ? true : self.current === el.state;
+    }, this);
+
+    list.sort(function(a, b): any {
+      switch (self.select) {
+        case 0:
+          return a.id < b.id ? -1 : 1;
+        case 1:
+          return a.id < b.id ? 1 : -1;
+        case 2:
+          return a.datef < b.datef ? -1 : 1;
+        case 3:
+          return a.datef < b.datef ? 1 : -1;
+        case 4:
+          var aComment = a.comment;
+          var bComment = b.comment;
+          return aComment < bComment ? -1 : 1;
+        case 5:
+          var aComment = a.comment;
+          var bComment = b.comment;
+          return aComment < bComment ? 1 : -1;
+      }
+    });
+
+    return list;
+  }
+
+  doChangeState(item: any): void {
+    let my = this;
+    item.state = !item.state ? 1 : 0;
+    if (item.state === 1) {
+      item.datef = new Date().getTime();
+    }else{
+      item.datef = -1;
+    }
+  }
+
+  doRemove(item: any): void {
+    var index = this.todos.indexOf(item);
+    this.todos.splice(index, 1);
+  }
+
+  titleSort(menu: any): void {
+    let select = this.select;
+    switch (menu) {
+      case 0:
+        if (select === 0) this.select = 1;
+        else this.select = 0;
+        break;
+      case 1:
+        if (select === 4) this.select = 5;
+        else this.select = 4;
+        break;
+      case 4:
+        if (select === 2) this.select = 3;
+        else this.select = 2;
+        break;
+    }
+  }
+}
 </script>
 
 <style>
@@ -26,4 +109,9 @@ export default class App extends Vue {}
   color: #2c3e50;
   margin-top: 60px;
 }
+.main {
+  text-align: center;
+  margin-left: 500px;
+}
 </style>
+
