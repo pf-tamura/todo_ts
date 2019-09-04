@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th v-for="menu in ths" v-bind:key="menu.id">
-          <button v-on:click="s_id(menu)" type="button" class="aaa">
+          <button v-on:click="id(menu)" type="button" class="aaa">
             {{ menu.value }}
           </button>
         </th>
@@ -32,16 +32,12 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
-// import Header from "./components/Header.vue";
 import option from "../Options";
 
-@Component({
-  components: {
-    // Header
-  }
-})
+@Component
 export default class Main extends Vue {
   @Prop() computedTodos!: any[];
+
   ths: any = [
     { id: 0, value: "ID" },
     { id: 1, value: "コメント" },
@@ -77,16 +73,16 @@ export default class Main extends Vue {
   }
 
   @Emit()
-  s_state(state: any): any {
+  state(state: any): any {
     return state;
   }
 
   @Emit()
-  s_id(menu: any): any {
+  id(menu: any): any {
     return menu.id;
   }
   @Emit()
-  s_remove(item: any): any {
+  remove(item: any): any {
     return item;
   }
 }
