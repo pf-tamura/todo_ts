@@ -2,9 +2,9 @@
   <table>
     <thead>
       <tr>
-        <th v-for="menu in ths" v-bind:key="menu.id">
-          <button v-on:click="s_id(menu)" type="button" class="aaa">
-            {{ menu.value }}
+        <th v-for="column in columns" v-bind:key="column.id">
+          <button v-on:click="s_id(column)" type="button" class="aaa">
+            {{ column.value }}
           </button>
         </th>
       </tr>
@@ -20,8 +20,8 @@
         <td class="state">
           <button v-on:click="s_state(item)">{{ labels[item.state] }}</button>
         </td>
-        <td>{{ item.date }}</td>
-        <td>{{ getDate(item.datef) }}</td>
+        <td>{{ item.dateAdded }}</td>
+        <td>{{ getDate(item.dateEnd) }}</td>
         <td></td>
         <td class="button">
           <button v-on:click="s_remove(item)">削除</button>
@@ -42,7 +42,8 @@ import option from "../Options";
 })
 export default class Main extends Vue {
   @Prop() computedTodos!: any[];
-  ths: any = [
+
+  columns: any = [
     { id: 0, value: "ID" },
     { id: 1, value: "コメント" },
     { id: 2, value: "状態" },
@@ -57,11 +58,11 @@ export default class Main extends Vue {
     }, {});
   }
 
-  getDate(datef: number): string {
-    if (datef === -1) {
+  getDate(dateEnd: number): string {
+    if (dateEnd === -1) {
       return "未完了";
     } else {
-      let f = new Date(datef);
+      let f = new Date(dateEnd);
       return (
         f.getFullYear() +
         "/" +
@@ -82,8 +83,8 @@ export default class Main extends Vue {
   }
 
   @Emit()
-  s_id(menu: any): any {
-    return menu.id;
+  s_id(culumn: any): any {
+    return culumn.id;
   }
   @Emit()
   s_remove(item: any): any {
