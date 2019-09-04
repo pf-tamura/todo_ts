@@ -83,8 +83,8 @@ export default class Main extends Vue {
   }
 
   @Emit()
-  s_id(culumn: any): any {
-    return culumn.id;
+  s_id(type: any): any {
+    return type.id;
   }
   @Emit()
   s_remove(item: any): any {

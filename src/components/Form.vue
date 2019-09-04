@@ -17,7 +17,7 @@ let total: number = 0;
 export default class Form extends Vue {
   @Prop() comment!: string;
   todos: any[] = [];
-  itemid = 0;
+  itemId = 0;
   doAdd(): void {
     var comment: HTMLInputElement = this.$refs.comment as HTMLInputElement;
     if (!comment.value) {
@@ -25,7 +25,7 @@ export default class Form extends Vue {
     }
     var d = new Date();
     this.todos.push({
-      id: this.itemid++,
+      id: this.itemId++,
       comment: comment.value,
       state: 0,
       dateAdded:

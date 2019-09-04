@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>並び変え</h3>
-    <label v-for="type in typs" class="bbb" v-bind:key="type.value">
+    <label v-for="type in sortTypeList" class="bbb" v-bind:key="type.value">
       <input
         type="radio"
         v-model="select"
@@ -21,7 +21,7 @@ import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 export default class Sort extends Vue {
   @Prop() select!: number;
   // sortdedtodo: any[] = [];
-  typs: Object[] = [
+  sortTypeList: Object[] = [
     { value: 0, type: "id順" },
     { value: 1, type: "id順(降順)" },
     { value: 2, type: "完了日順" },
