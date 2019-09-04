@@ -20,7 +20,6 @@ export default class Form extends Vue {
   uid = 0;
 
   doAdd(): void {
-
     var comment: HTMLInputElement = this.$refs.comment as HTMLInputElement;
 
     if (!comment.value) {
@@ -30,21 +29,21 @@ export default class Form extends Vue {
     var d = new Date();
 
     this.todos.push({
-      id:      this.uid++,
+      id:this.uid++,
       comment: comment.value,
-      state:   0,
-      date:    d.getFullYear() +
-               "/" +
-               d.getMonth() +
-               "/" +
-               d.getDate() +
-               "/" +
-               d.getHours() +
-               ":" +
-               d.getMinutes(),
-      datea:   d.getTime(),
-      datef:   -1
-
+      state: 0,
+      date:
+        d.getFullYear() +
+        "/" +
+        d.getMonth() +
+        "/" +
+        d.getDate() +
+        "/" +
+        d.getHours() +
+        ":" +
+        d.getMinutes(),
+      datea: d.getTime(),
+      datef: -1
     });
     comment.value = "";
     this.notify();
