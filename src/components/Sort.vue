@@ -20,7 +20,6 @@ import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 @Component
 export default class Sort extends Vue {
   @Prop() select!: number;
-  sorttodo: any[] = [];
   sorts: Object[] = [
     { value: 0, type: "id順" },
     { value: 1, type: "id順(降順)" },

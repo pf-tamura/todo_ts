@@ -33,7 +33,6 @@ export default class App extends Vue {
   todos: any[] = [];
   current: number = -1;
   select: number = 0;
-  // state: any = {};
 
   get computedTodos(): any[] {
     const self = this;
@@ -62,13 +61,14 @@ export default class App extends Vue {
   }
 
   doChangeState(item: any): void {
-    let my = this;
     item.state = !item.state ? 1 : 0;
+
     if (item.state === 1) {
       item.datef = new Date().getTime();
-    } else {
-      item.datef = -1;
+      return;
     }
+
+    item.datef = -1;
   }
 
   doRemove(item: any): void {
