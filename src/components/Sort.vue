@@ -6,7 +6,7 @@
         type="radio"
         v-model="select"
         v-bind:value="type.value"
-        v-on:click="s_select(type.value)"
+        v-on:click="sselect(sort.value)"
       />
       {{ type.type }}
     </label>
@@ -20,7 +20,7 @@ import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 @Component
 export default class Sort extends Vue {
   @Prop() select!: number;
-  // sortdedtodo: any[] = [];
+
   sortTypeList: Object[] = [
     { value: 0, type: "id順" },
     { value: 1, type: "id順(降順)" },
@@ -31,7 +31,7 @@ export default class Sort extends Vue {
   ];
 
   @Emit()
-  s_select(select: number): number {
+  sselect(select: number): number {
     return select;
   }
 }

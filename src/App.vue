@@ -4,11 +4,11 @@
     <Main
       class="main"
       :computedTodos="computedTodos"
-      v-on:s_state="doChangeState($event)"
-      v-on:s_id="SortByItem($event)"
-      v-on:s_remove="doRemove($event)"
+      v-on:state="doChangeState($event)"
+      v-on:id="titleSort($event)"
+      v-on:remove="doRemove($event)"
     ></Main>
-    <Sort v-on:s_select="select = $event" :select="select"></Sort>
+    <Sort v-on:sselect="select = $event" :select="select"></Sort>
     <Form v-on:notify="todos = $event"></Form>
   </div>
 </template>
@@ -33,7 +33,6 @@ export default class App extends Vue {
   todos: any[] = [];
   current: number = -1;
   select: number = 0;
-  // state: any = {};
 
   get computedTodos(): any[] {
     const self = this;
@@ -62,13 +61,14 @@ export default class App extends Vue {
   }
 
   doChangeState(item: any): void {
-    let my = this;
     item.state = !item.state ? 1 : 0;
+
     if (item.state === 1) {
-      item.dateEnd = new Date().getTime();
-    } else {
-      item.dateEnd = -1;
+      item.datef = new Date().getTime();
+      return;
     }
+
+    item.datef = -1;
   }
 
   doRemove(item: any): void {

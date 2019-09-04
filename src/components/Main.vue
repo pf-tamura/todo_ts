@@ -2,9 +2,9 @@
   <table>
     <thead>
       <tr>
-        <th v-for="column in columns" v-bind:key="column.id">
-          <button v-on:click="s_id(column)" type="button" class="aaa">
-            {{ column.value }}
+        <th v-for="menu in ths" v-bind:key="menu.id">
+          <button v-on:click="id(menu)" type="button" class="aaa">
+            {{ menu.value }}
           </button>
         </th>
       </tr>
@@ -18,13 +18,13 @@
         <th>{{ item.id }}</th>
         <td>{{ item.comment }}</td>
         <td class="state">
-          <button v-on:click="s_state(item)">{{ labels[item.state] }}</button>
+          <button v-on:click="state(item)">{{ labels[item.state] }}</button>
         </td>
         <td>{{ item.dateAdded }}</td>
         <td>{{ getDate(item.dateEnd) }}</td>
         <td></td>
         <td class="button">
-          <button v-on:click="s_remove(item)">削除</button>
+          <button v-on:click="remove(item)">削除</button>
         </td>
       </tr>
     </tbody>
@@ -78,16 +78,16 @@ export default class Main extends Vue {
   }
 
   @Emit()
-  s_state(state: any): any {
+  state(state: any): any {
     return state;
   }
 
   @Emit()
-  s_id(type: any): any {
-    return type.id;
+  id(menu: any): any {
+    return menu.id;
   }
   @Emit()
-  s_remove(item: any): any {
+  remove(item: any): any {
     return item;
   }
 }
