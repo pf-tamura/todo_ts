@@ -6,7 +6,7 @@
         type="radio"
         v-model="select"
         v-bind:value="sort.value"
-        v-on:click="s_select(sort.value)"
+        v-on:click="sselect(sort.value)"
       />
       {{ sort.type }}
     </label>
@@ -31,7 +31,7 @@ export default class Sort extends Vue {
   ];
 
   @Emit()
-  s_select(select: number): number {
+  sselect(select: number): number {
     return select;
   }
 }

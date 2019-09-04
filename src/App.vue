@@ -4,11 +4,11 @@
     <Main
       class="main"
       :computedTodos="computedTodos"
-      v-on:s_state="doChangeState($event)"
-      v-on:s_id="titleSort($event)"
-      v-on:s_remove="doRemove($event)"
+      v-on:state="doChangeState($event)"
+      v-on:id="titleSort($event)"
+      v-on:remove="doRemove($event)"
     ></Main>
-    <Sort v-on:s_select="select = $event" :select="select"></Sort>
+    <Sort v-on:sselect="select = $event" :select="select"></Sort>
     <Form v-on:notify="todos = $event"></Form>
   </div>
 </template>
