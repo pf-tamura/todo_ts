@@ -38,7 +38,6 @@ export default class Form extends Vue {
         d.getHours() +
         ":" +
         d.getMinutes(),
-      // dateAdded: d.getTime(),
       dateEnd: -1
     });
     comment.value = "";

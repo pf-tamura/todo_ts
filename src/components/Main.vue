@@ -2,9 +2,9 @@
   <table>
     <thead>
       <tr>
-        <th v-for="menu in ths" v-bind:key="menu.id">
-          <button v-on:click="id(menu)" type="button" class="aaa">
-            {{ menu.value }}
+        <th v-for="column in columns" v-bind:key="column.id">
+          <button v-on:click="id(column)" type="button" class="aaa">
+            {{ column.value }}
           </button>
         </th>
       </tr>
@@ -32,14 +32,9 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
-// import Header from "./components/Header.vue";
 import option from "../Options";
 
-@Component({
-  components: {
-    // Header
-  }
-})
+@Component
 export default class Main extends Vue {
   @Prop() computedTodos!: any[];
 
@@ -83,8 +78,8 @@ export default class Main extends Vue {
   }
 
   @Emit()
-  id(menu: any): any {
-    return menu.id;
+  id(type: any): any {
+    return type.id;
   }
   @Emit()
   remove(item: any): any {

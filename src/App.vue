@@ -5,7 +5,7 @@
       class="main"
       :computedTodos="computedTodos"
       v-on:state="doChangeState($event)"
-      v-on:id="titleSort($event)"
+      v-on:id="SortByItem($event)"
       v-on:remove="doRemove($event)"
     ></Main>
     <Sort v-on:sselect="select = $event" :select="select"></Sort>
@@ -64,11 +64,10 @@ export default class App extends Vue {
     item.state = !item.state ? 1 : 0;
 
     if (item.state === 1) {
-      item.datef = new Date().getTime();
+      item.dateEnd = new Date().getTime();
       return;
     }
-
-    item.datef = -1;
+    item.dateEnd = -1;
   }
 
   doRemove(item: any): void {

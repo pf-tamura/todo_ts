@@ -6,7 +6,7 @@
         type="radio"
         v-model="select"
         v-bind:value="type.value"
-        v-on:click="sselect(sort.value)"
+        v-on:click="sselect(type.value)"
       />
       {{ type.type }}
     </label>
