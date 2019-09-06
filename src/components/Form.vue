@@ -20,12 +20,15 @@ export default class Form extends Vue {
   itemId = 0;
   doAdd(): void {
     var comment: HTMLInputElement = this.$refs.comment as HTMLInputElement;
+
     if (!comment.value) {
       return;
     }
+
     var d = new Date();
+
     this.todos.push({
-      id: this.itemId++,
+      id:this.itemId++,
       comment: comment.value,
       state: 0,
       dateAdded:

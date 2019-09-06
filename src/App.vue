@@ -36,6 +36,7 @@ export default class App extends Vue {
 
   get computedTodos(): any[] {
     const self = this;
+
     const list: any[] = this.todos.filter(function(el: any) {
       return self.current < 0 ? true : self.current === el.state;
     }, this);
@@ -56,7 +57,6 @@ export default class App extends Vue {
           return a.Comment < b.Comment ? 1 : -1;
       }
     });
-
     return list;
   }
 
