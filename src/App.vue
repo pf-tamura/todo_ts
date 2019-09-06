@@ -5,7 +5,7 @@
       class="main"
       :computedTodos="computedTodos"
       v-on:state="doChangeState($event)"
-      v-on:id="titleSort($event)"
+      v-on:id="SortByItem($event)"
       v-on:remove="doRemove($event)"
     ></Main>
     <Sort v-on:sselect="select = $event" :select="select"></Sort>
@@ -48,9 +48,9 @@ export default class App extends Vue {
         case 1:
           return a.id < b.id ? 1 : -1;
         case 2:
-          return a.datef < b.datef ? -1 : 1;
+          return a.dateEnd < b.dateEnd ? -1 : 1;
         case 3:
-          return a.datef < b.datef ? 1 : -1;
+          return a.dateEnd < b.dateEnd ? 1 : -1;
         case 4:
           return a.Comment < b.Comment ? -1 : 1;
         case 5:
@@ -61,14 +61,13 @@ export default class App extends Vue {
   }
 
   doChangeState(item: any): void {
-    let my = this;
-
     item.state = !item.state ? 1 : 0;
+
     if (item.state === 1) {
-      item.datef = new Date().getTime();
-    } else {
-      item.datef = -1;
+      item.dateEnd = new Date().getTime();
+      return;
     }
+    item.dateEnd = -1;
   }
 
   doRemove(item: any): void {
@@ -76,10 +75,9 @@ export default class App extends Vue {
     this.todos.splice(index, 1);
   }
 
-  titleSort(menu: any): void {
+  SortByItem(item: any): void {
     let select = this.select;
-
-    switch (menu) {
+    switch (item) {
       case 0:
         if (select === 0) this.select = 1;
         else this.select = 0;
